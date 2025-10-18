@@ -1,0 +1,388 @@
+/* ========================================= */
+/* 1. RESET, VARS, TIPOGRAFIA */
+/* ========================================= */
+
+:root {
+    --color-primary: #007bff; /* Azul */
+    --color-primary-dark: #0056b3;
+    --color-secondary: #6c757d; /* Cinza */
+    --color-success: #28a745; /* Verde */
+    --color-danger: #dc3545; /* Vermelho */
+    --color-warning: #ffc107; /* Amarelo */
+    --color-background: #f8f9fa;
+    --color-text: #343a40;
+    --border-radius: 0.5rem;
+    --spacing: 1rem;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    margin-bottom: var(--spacing);
+    color: #212529;
+}
+
+/* Container principal para centralizar e limitar a largura */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 var(--spacing);
+}
+
+/* ========================================= */
+/* 2. HEADER E NAVEGAÇÃO */
+/* ========================================= */
+
+.topbar {
+    background-color: var(--color-primary);
+    color: white;
+    padding: 0.5rem 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.topbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.topbar h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 0.75rem;
+    margin-left: 0.5rem;
+    border-radius: var(--border-radius);
+    transition: background-color 0.3s;
+}
+
+.nav a:hover {
+    background-color: var(--color-primary-dark);
+}
+
+/* ========================================= */
+/* 3. BOTÕES E COMPONENTES GERAIS */
+/* ========================================= */
+
+.btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.btn.small {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.85rem;
+}
+
+.btn.primary {
+    background-color: var(--color-primary);
+    color: white;
+}
+.btn.primary:hover {
+    background-color: var(--color-primary-dark);
+}
+
+.btn.secondary {
+    background-color: var(--color-secondary);
+    color: white;
+}
+.btn.secondary:hover {
+    background-color: #5a6268;
+}
+
+.btn.danger {
+    background-color: var(--color-danger);
+    color: white;
+}
+.btn.danger:hover {
+    background-color: #bd2130;
+}
+
+.toolbar {
+    display: flex;
+    flex-wrap: wrap; /* Permite quebrar linha no mobile */
+    gap: 0.5rem;
+    margin-bottom: var(--spacing);
+}
+
+/* Cards (para formulários, categorias, etc.) */
+.card {
+    background-color: white;
+    padding: var(--spacing);
+    border-radius: var(--border-radius);
+    box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
+    margin-bottom: var(--spacing);
+}
+
+/* Mensagens Flash */
+.flash-list {
+    margin-bottom: var(--spacing);
+}
+.flash {
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    border-radius: var(--border-radius);
+    font-weight: bold;
+}
+.flash.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+/* Estilize 'success' se houver */
+.flash.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+/* ========================================= */
+/* 4. FORMULÁRIOS (Nova Estrutura) */
+/* ========================================= */
+
+.card label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    font-size: 0.9rem;
+}
+
+.form-group {
+    margin-bottom: var(--spacing);
+}
+
+.form-group input, .form-group textarea, .form-group select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ced4da;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+    border-color: var(--color-primary);
+    outline: 0;
+}
+
+/* Checkbox (para a opção 'Ativar notificações') */
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    font-weight: normal;
+    font-size: 1rem;
+    cursor: pointer;
+}
+.checkbox-group input[type="checkbox"] {
+    width: auto;
+    margin-right: 0.5rem;
+}
+
+.form-actions {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+    margin-top: var(--spacing);
+}
+
+/* Linha de formulário (Form-row) - para colocar campos lado a lado em desktop */
+.form-row {
+    display: flex;
+    gap: var(--spacing);
+}
+
+.form-row .form-group {
+    flex: 1; /* Distribui o espaço igualmente */
+}
+
+/* ========================================= */
+/* 5. CATEGORIAS */
+/* ========================================= */
+
+.category-list {
+    list-style: none;
+    padding: 0;
+}
+
+.category-item {
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.category-edit-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    align-items: center;
+}
+
+.category-edit-form .form-group {
+    margin-bottom: 0;
+    flex: 1;
+    min-width: 150px; /* Ajuda na responsividade em telas médias */
+}
+
+.category-edit-form input {
+    padding: 0.5rem;
+}
+
+.category-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* ========================================= */
+/* 6. TABELA DE TAREFAS (RESPONSIVA) */
+/* ========================================= */
+
+.tasks {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: var(--spacing);
+    box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
+    background-color: white;
+}
+
+.tasks th, .tasks td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.tasks thead th {
+    background-color: #e9ecef;
+    font-weight: 700;
+    color: #495057;
+    border-top: 1px solid #dee2e6;
+}
+
+.tasks tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.tasks .actions {
+    display: flex;
+    gap: 0.5rem;
+    white-space: nowrap;
+}
+
+/* Responsividade da Tabela (Mobile First) */
+@media screen and (max-width: 768px) {
+
+    .topbar .container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .topbar h1 {
+        margin-bottom: 0.5rem;
+    }
+    .nav {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+    }
+    .nav a {
+        flex: 1;
+        text-align: center;
+        margin: 0 0.1rem;
+    }
+
+    /* Tabela para Card View */
+    .responsive-table {
+        border: 0;
+    }
+
+    .responsive-table thead {
+        display: none; /* Oculta cabeçalho */
+    }
+
+    .responsive-table tr {
+        display: block;
+        margin-bottom: var(--spacing);
+        border: 1px solid #dee2e6;
+        border-radius: var(--border-radius);
+        box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.05);
+        background-color: white;
+    }
+
+    .responsive-table td {
+        display: block;
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+        border: none;
+    }
+    
+    .responsive-table td:last-child {
+        border-bottom: none;
+    }
+
+    .responsive-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: var(--spacing);
+        font-weight: 700;
+        text-align: left;
+        color: var(--color-secondary);
+        width: 45%;
+    }
+
+    /* Ocultar colunas menos importantes no mobile */
+    .col-due, .col-priority {
+        /* Se você não quiser ocultar, apenas deixe com o estilo de TD acima */
+        /* display: none; */ 
+    }
+
+    .tasks .actions {
+        justify-content: flex-end;
+        padding: 0.75rem var(--spacing) 0.5rem;
+        border-top: 1px dashed #dee2e6;
+    }
+    
+    /* Formulário - empilha campos lado a lado */
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .form-row .form-group {
+        width: 100%;
+    }
+
+    /* Categorias - empilha campos de edição */
+    .category-edit-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .category-edit-form .form-group {
+        min-width: 100%;
+    }
+    .category-actions {
+        justify-content: space-between;
+    }
+}

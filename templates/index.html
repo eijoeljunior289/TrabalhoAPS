@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+<div><a>'</a></div>
+<div class="toolbar">
+  <a class="btn primary" href="{{ url_for('new_task') }}">Nova Tarefa</a>
+  <a class="btn secondary" href="{{ url_for('categories') }}">Gerenciar Categorias</a>
+</div>
+
+<div class="tasks-container">
+  <table class="tasks responsive-table">
+    <thead>
+      <tr>
+        <th>Título</th>
+        <th>Descrição</th>
+        <th class="col-due">Vencimento</th>
+        <th class="col-priority">Prioridade</th>
+        <th class="col-category">Categoria</th>
+        <th class="col-notify">Notificar</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for t in tasks %}
+      <tr class="task-row">
+        <td data-label="Título:">{{ t.title }}</td>
+        <td data-label="Descrição:">{{ t.description[:100] if t.description else '' }}</td>
+        <td data-label="Vencimento:" class="col-due">{{ t.due_show }}</td>
+        <td data-label="Prioridade:" class="col-priority">{{ t.priority }}</td>
+        <td data-label="Categoria:" class="col-category">{{ t.category or 'Sem categoria' }}</td>
+        <td data-label="Notificar:" class="col-notify">{{ 'Sim' if t.notify else 'Não' }}</td>
+        <td class="actions">
+          <a class="btn small" href="{{ url_for('edit_task', task_id=t.id) }}">Editar</a>
+          <form action="{{ url_for('delete_task', task_id=t.id) }}" method="post" style="display:inline">
+            <button class="btn small danger" type="submit">Excluir</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

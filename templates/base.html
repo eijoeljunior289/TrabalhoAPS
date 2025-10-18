@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Gerenciador de Tarefas</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="{{ url_for('static', filename='app.js') }}" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <h1>Gerenciador de Tarefas</h1>
+      <nav class="nav">
+        <a href="{{ url_for('index') }}">Tarefas</a>
+        <a href="{{ url_for('categories') }}">Categorias</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-list">
+        {% for category, msg in messages %}
+          <div class="flash {{ category }}">{{ msg }}</div>
+        {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="container footer">
+    <small>Alunos: Joel Júnior, Gregory, Leandro Daniel, Samuel, Sabrina, Ramís, Felipe e Vinicius.</small>
+  </footer>
+</body>
+</html>
