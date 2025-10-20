@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+  <h2>Dashboard</h2>
+  <div class="stats-grid">
+    <div class="stat-card"><h3 id="total">--</h3><p>Total de tarefas</p></div>
+    <div class="stat-card"><h3 id="pending">--</h3><p>Tarefas pendentes</p></div>
+    <div class="stat-card"><h3 id="overdue">--</h3><p>Tarefas atrasadas</p></div>
+    <div class="stat-card"><h3 id="no_notify">--</h3><p>Sem notificação</p></div>
+  </div>
+  <canvas id="chart" width="400" height="200"></canvas>
+</div>
+<!-- include Chart.js from CDN and dashboard script -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,9 @@
+
+Changes made by assistant:
+- Added Flask route /dashboard and /api/dashboard_data in app.py
+- Created templates/dashboard.html that extends base.html, includes Chart.js and dashboard.js
+- Created static/dashboard.js to fetch stats and render a Chart.js bar chart
+- Added notify.mp3 in static/ (short beep) and modified static/app.js to attempt to play sound when alerts are shown
+Notes:
+- Browsers often block autoplay of audio until the user interacts with the page; the script makes a best-effort to play the sound but the user may need to click once in the page to allow sounds.
+- Run the app with: python app.py and open /dashboard to view the panel.

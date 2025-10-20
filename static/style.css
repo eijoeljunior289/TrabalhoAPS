@@ -9,7 +9,7 @@
     --color-success: #28a745; /* Verde */
     --color-danger: #dc3545; /* Vermelho */
     --color-warning: #ffc107; /* Amarelo */
-    --color-background: #f8f9fa;
+    --background-color: #f8f9fa;
     --color-text: #343a40;
     --border-radius: 0.5rem;
     --spacing: 1rem;
@@ -23,7 +23,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--color-background);
+    background-color: #f8f9fa;
     color: var(--color-text);
     line-height: 1.6;
 }
@@ -353,10 +353,8 @@ h1, h2, h3 {
     }
 
     /* Ocultar colunas menos importantes no mobile */
-    .col-due, .col-priority {
-        /* Se você não quiser ocultar, apenas deixe com o estilo de TD acima */
-        /* display: none; */ 
-    }
+    /* O seletor .col-due e .col-priority foi removido para evitar conjuntos de regras vazios;
+       se quiser ocultar as colunas no mobile, descomente e use `display: none;` conforme necessário. */
 
     .tasks .actions {
         justify-content: flex-end;
@@ -385,4 +383,21 @@ h1, h2, h3 {
     .category-actions {
         justify-content: space-between;
     }
+}
+
+/* Botão fixo de ativar som */
+.btn-enable-sound {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  z-index: 1000;
+}
+.btn-enable-sound:hover {
+  background-color: #0056b3;
 }

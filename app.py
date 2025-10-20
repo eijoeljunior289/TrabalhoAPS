@@ -132,5 +132,47 @@ def api_notifications():
             trabalho.set_task_notified(tid)
     return jsonify(alerts)
 
+
+@app.route("/dashboard")
+def dashboard():
+    # render the dashboard page (front-end will fetch data via /api/dashboard_data)
+    return render_template("dashboard.html")
+
+@app.route("/api/dashboard_data")
+def dashboard_data():
+    # compute simple statistics from tasks table
+    from datetime import datetime
+    now = datetime.now()
+    rows = trabalho.get_tasks()  # returns many fields, see trabalho.get_tasks implementation
+    total = 0
+    pending = 0
+    overdue = 0
+    no_notify = 0
+    for r in rows:
+        # r: (id,title,description,due,priority,cat_title,notify,notified)
+        total += 1
+        due = r[3]
+        notify = r[6]
+        if notify == 0:
+            no_notify += 1
+        if due:
+            try:
+                due_dt = datetime.fromisoformat(due)
+                if due_dt < now:
+                    overdue += 1
+                else:
+                    pending += 1
+            except Exception:
+                pending += 1
+        else:
+            # tasks without due date count as pending
+            pending += 1
+    return jsonify({
+        "total": total,
+        "pending": pending,
+        "overdue": overdue,
+        "no_notify": no_notify
+    })
+
 if __name__ == '__main__':
     app.run(debug=True)
